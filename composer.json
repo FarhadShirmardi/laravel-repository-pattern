@@ -1,0 +1,43 @@
+{
+  "name": "derakht/repository-pattern",
+  "description": "Implement repository pattern design with a command",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "farhadshirmardi",
+      "email": "shirmardi@gmail.com"
+    }
+  ],
+  "require": {
+    "laravel/framework": ">=5.6"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.5",
+    "orchestra/testbench": "5.x-dev"
+  },
+  "keywords": [
+    "laravel",
+    "repository",
+    "repository-pattern",
+    "repository-pattern-design"
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+          "Derakht\\RepositoryPattern\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+          "Derakht\\RepositoryPattern\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+              "Derakht\\RepositoryPattern\\RepositoryPatternServiceProvider"
+            ]
+        }
+    }
+}

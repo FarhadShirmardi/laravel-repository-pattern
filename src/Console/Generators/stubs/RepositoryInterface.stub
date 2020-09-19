@@ -1,0 +1,10 @@
+<?php
+
+{{namespace}}
+
+use Derakht\RepositoryPattern\Repositories\RepositoryInterface;
+
+interface {{class}}RepositoryInterface extends RepositoryInterface
+{
+
+}

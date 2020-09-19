@@ -1,0 +1,15 @@
+<?php
+
+{{namespace}}
+
+use Derakht\RepositoryPattern\Repositories\Repository;
+use {{interface}}
+
+/** @property {{class}} $model */
+class {{class}}Repository extends Repository implements {{class}}RepositoryInterface
+{
+    protected function model()
+    {
+        return {{class}}::class;
+    }
+}
