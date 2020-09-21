@@ -10,7 +10,7 @@ class RepositoryTest extends Tests\TestCase
     {
         $this->artisan('make:repository', [
             'model' => 'Post',
-            '--migration'
+            '--force'
         ])
             ->expectsQuestion("A App\Post model does not exist. Do you want to generate it?", true)
             ->expectsQuestion("Do you want to generate migration?", true)

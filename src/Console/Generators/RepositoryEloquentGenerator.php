@@ -23,7 +23,7 @@ class RepositoryEloquentGenerator extends Generator
 
     public function getReplacements()
     {
-        $interface = parent::getRootNamespace() . '\\' . parent::getClassPath('repository_interface') . '\\' . "{$this->name}RepositoryInterface";
+        $interface = parent::getRootNamespace() . '\\' . parent::getClassPath('repository_interface') . '\\' . "{$this->name}RepositoryInterface;";
 
         return array_merge(parent::getReplacements(), [
             'interface' => $interface

@@ -27,7 +27,11 @@ class RepositoryProviderGenerator extends Generator
         $eloquent = '\\' . $this->getRepositoryEloquentClass() . '::class';
         $this->filesystem->put(
             $this->getPath(),
-            str_replace($this->endOfFile, PHP_EOL . "\$this->app->bind({$interface}, $eloquent);" . $this->endOfFile . PHP_EOL, $provider)
+            str_replace(
+                $this->endOfFile,
+                PHP_EOL . "\t\t\$this->app->bind(\n\t\t\t{$interface},\n\t\t\t$eloquent\n\t\t);" . $this->endOfFile,
+                $provider
+            )
         );
     }
 
