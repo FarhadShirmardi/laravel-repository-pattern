@@ -8,6 +8,7 @@ class RepositoryTest extends Tests\TestCase
 {
     public function testGenerateRepository()
     {
+        $this->artisan('vendor:publish --tag="config"');
         $this->artisan('make:repository', [
             'model' => 'Post',
             '--force'
