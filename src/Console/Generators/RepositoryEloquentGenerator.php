@@ -26,7 +26,8 @@ class RepositoryEloquentGenerator extends Generator
         $interface = parent::getRootNamespace() . '\\' . parent::getClassPath('repository_interface') . '\\' . "{$this->name}RepositoryInterface;";
 
         return array_merge(parent::getReplacements(), [
-            'interface' => $interface
+            'interface' => $interface,
+            'model_path' => config('repository.paths.model_path', 'App')
         ]);
     }
 }

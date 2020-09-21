@@ -32,7 +32,7 @@ abstract class Generator
         if ($class == 'repository') {
             $path = config('repository.paths.repository', 'Repositories/Eloquent');
         } elseif ($class == 'repository_interface') {
-            $path = config('repository.paths.repository_interface', 'Repositories/Contracts');
+            $path = config('repository.paths.repository_interface', 'Repositories/Contract');
         } elseif ($class == 'provider') {
             $path = config('repository.paths.provider', 'RepositoryServiceProvider');
         } else {

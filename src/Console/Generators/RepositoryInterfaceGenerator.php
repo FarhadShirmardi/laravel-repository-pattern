@@ -18,6 +18,6 @@ class RepositoryInterfaceGenerator extends Generator
 
     public function getPath()
     {
-        return app_path() . DIRECTORY_SEPARATOR . $this->getClassPath($this->getConfigClass(), true) . DIRECTORY_SEPARATOR . "{$this->getName()}Repository.php";
+        return app_path() . DIRECTORY_SEPARATOR . $this->getClassPath($this->getConfigClass(), true) . DIRECTORY_SEPARATOR . "{$this->getName()}RepositoryInterface.php";
     }
 }

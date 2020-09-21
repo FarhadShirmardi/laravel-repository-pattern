@@ -4,6 +4,7 @@
 
 use Derakht\RepositoryPattern\Repositories\Repository;
 use {{interface}}
+use {{model_path}}\{{class}};
 
 /** @property {{class}} $model */
 class {{class}}Repository extends Repository implements {{class}}RepositoryInterface
