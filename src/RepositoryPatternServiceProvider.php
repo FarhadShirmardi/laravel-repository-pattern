@@ -14,10 +14,14 @@ class RepositoryPatternServiceProvider extends ServiceProvider
                 RepositoryPatternCommand::class,
             ]);
         }
+        $this->publishes([
+            __DIR__ . '/config/repository.php' => config_path('repository.php')
+        ]);
     }
 
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__ . '/config/repository.php', 'repository');
         if (class_exists('\\App\\Providers\\RepositoryPatternServiceProvider')) {
             $this->app->register('\\App\\Providers\\RepositoryPatternServiceProvider');
         }

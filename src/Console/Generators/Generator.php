@@ -15,11 +15,16 @@ abstract class Generator
     protected $filesystem;
     protected $stub;
     protected $name;
+    /**
+     * @var array
+     */
+    private $options;
 
-    public function __construct($name)
+    public function __construct($name, $options = [])
     {
         $this->name = $name;
         $this->filesystem = new Filesystem();
+        $this->options = $options;
     }
 
     public function getClassPath($class, $isDir = false)
@@ -47,7 +52,7 @@ abstract class Generator
      */
     public function create()
     {
-        if ($this->filesystem->exists($path = $this->getPath())) {
+        if ($this->filesystem->exists($path = $this->getPath()) and !$this->force) {
             throw new Exception("$path already exists");
         }
         if (!$this->filesystem->isDirectory($dir = dirname($path))) {
@@ -71,7 +76,7 @@ abstract class Generator
 
         $content = file_get_contents($path);
         foreach ($this->getReplacements() as $key => $replacement) {
-            $content = str_replace("{{$key}}", $replacement, $content);
+            $content = str_replace("{{{$key}}}", $replacement, $content);
         }
 
         return $content;
@@ -98,9 +103,21 @@ abstract class Generator
 
     public function getNamespace()
     {
-        $namespace = implode('\\', explode('/', $this->getClass()));
-        return "namespace {$this->getRootNamespace()}\\{$namespace};";
+        $segments = explode('/', $this->getClass());
+        array_pop($segments);
+        $namespace = implode('\\', $segments);
+        $namespace = rtrim("{$this->getRootNamespace()}\\{$namespace}", '\\');
+        return "namespace {$namespace};";
     }
+
+    public function __get($name)
+    {
+        if (property_exists($this, $name)) {
+            return $this->{$name};
+        }
+        return $this->options[$name] ?? null;
+    }
+
 
     public function getRootNamespace()
     {

@@ -18,7 +18,7 @@ class RepositoryPatternCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'make:repository {model : Model name e.g User, Post}';
+    protected $signature = 'make:repository {model : Model name e.g User, Post} {--force}';
 
     /**
      * The console command description.
@@ -35,11 +35,14 @@ class RepositoryPatternCommand extends Command
     public function handle()
     {
         $model = $this->argument('model');
+        $options = [
+            'force' => $this->hasOption('force')
+        ];
         try {
             $this->buildModel($model);
-            (new RepositoryEloquentGenerator($model))->create();
-            (new RepositoryInterfaceGenerator($model))->create();
-            (new RepositoryProviderGenerator($model))->create();
+            (new RepositoryEloquentGenerator($model, $options))->create();
+            (new RepositoryInterfaceGenerator($model, $options))->create();
+            (new RepositoryProviderGenerator($model, $options))->create();
             $this->info('Repository Created Successfully!');
         } catch (Exception $exception) {
             $this->error($exception->getTraceAsString());
