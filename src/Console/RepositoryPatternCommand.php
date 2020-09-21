@@ -5,7 +5,6 @@ namespace Derakht\RepositoryPattern\Console;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use InvalidArgumentException;
-use Symfony\Component\Console\Input\InputOption;
 use Derakht\RepositoryPattern\Console\Generators\RepositoryEloquentGenerator;
 use Derakht\RepositoryPattern\Console\Generators\RepositoryInterfaceGenerator;
 use Derakht\RepositoryPattern\Console\Generators\RepositoryProviderGenerator;
@@ -36,7 +35,7 @@ class RepositoryPatternCommand extends Command
     {
         $model = $this->argument('model');
         $options = [
-            'force' => $this->hasOption('force')
+            'force' => $this->option('force')
         ];
         try {
             $this->buildModel($model);
@@ -83,13 +82,5 @@ class RepositoryPatternCommand extends Command
         }
 
         return $model;
-    }
-
-    protected function getOptions()
-    {
-        return [
-            ['controller', 'c', InputOption::VALUE_NONE, 'Create a new controller for the model'],
-            ['migration', 'm', InputOption::VALUE_NONE, 'Create a new migration file for the model'],
-        ];
     }
 }
